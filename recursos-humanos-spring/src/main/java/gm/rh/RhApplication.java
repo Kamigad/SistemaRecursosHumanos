@@ -1,4 +1,4 @@
-package gm.RH;
+package gm.rh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
