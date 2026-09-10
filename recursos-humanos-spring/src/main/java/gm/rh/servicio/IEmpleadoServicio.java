@@ -8,5 +8,5 @@ public interface IEmpleadoServicio {
     List<Empleado> listarEmpleados();
     Empleado buscarEmpleadoId(Integer idEmpleado);
     Empleado guardarEmpleado(Empleado empleado);
-    void eliminarEmpleado(Empleado empleado);
+    void eliminarEmpleado(Integer idEmpleado);
 }
