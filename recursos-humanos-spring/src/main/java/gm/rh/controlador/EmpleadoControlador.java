@@ -34,4 +34,10 @@ public class EmpleadoControlador {
         logger.debug(empleado.toString());
         return ResponseEntity.ok(empleado);
     }
+
+    @PostMapping("/")
+    public Empleado agregarEmpleado(@RequestBody Empleado empleado){
+        logger.debug(empleado.toString());
+        return this.iEmpleadoServicio.guardarEmpleado(empleado);
+    }
 }
