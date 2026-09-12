@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/empleados") // http:localhost:8080/api/empleados
+@RequestMapping("/api/empleados") // http:localhost:8080/api/empleados
 @CrossOrigin(value = "http://localhost:3000")
 public class EmpleadoControlador {
 
@@ -21,5 +21,12 @@ public class EmpleadoControlador {
 
     public EmpleadoControlador(IEmpleadoServicio iEmpleadoServicio){
         this.iEmpleadoServicio = iEmpleadoServicio;
+    }
+
+    @GetMapping("/")
+    public List<Empleado> obtenerEmpleados(){
+        var empleados = iEmpleadoServicio.listarEmpleados();
+        empleados.forEach(empleado -> logger.debug(empleado.toString()));
+        return empleados;
     }
 }
