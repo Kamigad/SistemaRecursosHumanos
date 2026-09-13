@@ -40,4 +40,15 @@ public class EmpleadoControlador {
         logger.debug(empleado.toString());
         return this.iEmpleadoServicio.guardarEmpleado(empleado);
     }
+
+    @PutMapping("/{idEmpleado}")
+    public ResponseEntity<Empleado> actualizarEmpleado(@PathVariable Integer idEmpleado, @RequestBody Empleado empleadoActualizado){
+        var empleado = this.iEmpleadoServicio.buscarEmpleadoId(idEmpleado);
+        empleado.setNombreEmpleado(empleadoActualizado.getNombreEmpleado());
+        empleado.setDepartamentoEmpleado(empleadoActualizado.getDepartamentoEmpleado());
+        empleado.setSueldo(empleadoActualizado.getSueldo());
+        this.iEmpleadoServicio.guardarEmpleado(empleado);
+        logger.debug("Empleado Nuevo: " + empleado.toString());
+        return ResponseEntity.ok(empleado);
+    }
 }
