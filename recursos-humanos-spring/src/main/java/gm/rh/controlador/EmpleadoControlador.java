@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/empleados") // http:localhost:8080/api/empleados
@@ -50,5 +52,13 @@ public class EmpleadoControlador {
         this.iEmpleadoServicio.guardarEmpleado(empleado);
         logger.debug("Empleado Nuevo: " + empleado.toString());
         return ResponseEntity.ok(empleado);
+    }
+
+    @DeleteMapping("/{idEmpleado}")
+    public ResponseEntity<Map<String,Boolean>> eliminarEmpleado(@PathVariable Integer idEmpleado){
+        this.iEmpleadoServicio.eliminarEmpleado(idEmpleado);
+        Map<String,Boolean> respuesta = new HashMap<>();
+        respuesta.put("Eliminado", Boolean.TRUE);
+        return ResponseEntity.ok(respuesta);
     }
 }
