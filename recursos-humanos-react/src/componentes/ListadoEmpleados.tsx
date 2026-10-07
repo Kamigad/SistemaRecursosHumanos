@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import type { Empleado } from '../interfaces/Empleado';
+import { NumericFormat } from 'react-number-format';
+import { departamentosLegibles } from '../constantes/departamento';
 
 export default function ListadoEmpleados() {
 
@@ -35,24 +37,20 @@ export default function ListadoEmpleados() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>@social</td>
-                    </tr>
+                    {
+                    //Iterando sobre el arreglo de empleados
+                    empleados.map((empleado) => (
+                        <tr key={empleado.idEmpleado}>
+                            <th scope="row">{empleado.idEmpleado}</th>
+                            <td>{empleado.nombreEmpleado}</td>
+                            <td>{departamentosLegibles[empleado.departamentoEmpleado]}</td>
+                            <td><NumericFormat value={empleado.sueldo}
+                                displayType={'text'}
+                                thousandSeparator="," prefix={'$'}
+                                decimalScale={2} fixedDecimalScale/>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
 
