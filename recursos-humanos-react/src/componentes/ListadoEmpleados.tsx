@@ -1,12 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import type { Empleado } from '../interfaces/Empleado';
 import { NumericFormat } from 'react-number-format';
 import { departamentosLegibles } from '../constantes/departamento';
+import { obtenerEmpleados } from '../servicios/empleadoService';
 
 export default function ListadoEmpleados() {
-
-    const urlBase = "http://localhost:8080/api/empleados/";
 
     const [empleados, setEmpleados] = useState<Empleado[]>([]);
 
@@ -15,7 +13,7 @@ export default function ListadoEmpleados() {
     }, []);
 
     const cargarEmpleados = async () => {
-        const resultado = await axios.get(urlBase);
+        const resultado = await obtenerEmpleados();
         console.log("Resultado de cargar empleados");
         console.log(resultado.data);
         setEmpleados(resultado.data);
