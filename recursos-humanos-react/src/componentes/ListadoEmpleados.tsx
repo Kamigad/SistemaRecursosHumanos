@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Empleado } from '../interfaces/Empleado';
 import { NumericFormat } from 'react-number-format';
-import { departamentosLegibles } from '../constantes/departamento';
 import { obtenerEmpleados } from '../servicios/empleadoService';
+import { departamentosLegibles } from '../constantes/Departamento';
 
 export default function ListadoEmpleados() {
 

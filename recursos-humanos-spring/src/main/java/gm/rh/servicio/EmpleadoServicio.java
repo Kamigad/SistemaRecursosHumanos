@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -39,8 +40,13 @@ public class EmpleadoServicio implements IEmpleadoServicio{
 
     @Override
     public Empleado guardarEmpleado(Empleado empleado) {
-        if(empleado.getSueldo().compareTo(BigDecimal.ZERO) < 0){
-            throw new EmpleadoInvalidoExcepcion("No se puede registrar empleado con sueldos negativos: " + empleado.getSueldo());
+        if(Objects.isNull(empleado.getNombreEmpleado()) || empleado.getNombreEmpleado().isBlank()){
+            throw new EmpleadoInvalidoExcepcion("No se puede registrar empleados sin nombre");
+        } else if(Objects.isNull(empleado.getSueldo())){
+            throw  new EmpleadoInvalidoExcepcion("No se puede registrar empleados sin sueldo");
+        }
+        else if(empleado.getSueldo().compareTo(BigDecimal.ZERO) < 0){
+            throw new EmpleadoInvalidoExcepcion("No se puede registrar empleados con sueldos negativos: " + empleado.getSueldo());
         } else {
             return empleadoRepositorio.save(empleado);
         }
