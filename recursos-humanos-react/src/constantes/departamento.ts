@@ -4,5 +4,5 @@ export const departamentosLegibles: Record<string, string> = {
     VENTAS: "Ventas",
     CONTABILIDAD: "Contabilidad",
     RECURSOS_HUMANOS: "Recursos Humanos",
-    MERCADOTECNIA: "Mercadotecnia",
+    MERCADOTECNIA: "Mercadotecnia"
 };
